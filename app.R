@@ -9,6 +9,7 @@ library(ggplot2)
 ui <- fluidPage(
   titlePanel(
     # text title of visualization
+    "Reader Preferences - coming soon"
   ),
   # Genre prefs plot
   fluidRow(

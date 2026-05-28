@@ -4,12 +4,14 @@ output:
   flexdashboard::flex_dashboard:
     theme: cosmo
     "font-size-base": "1.3rem"
-
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
 # call libraries
 library(flexdashboard)
+library(shiny)
+library(ggplot2)
 
 # load data
 load("prefs.RData")
@@ -40,18 +42,22 @@ Welcome to the Lit Chicks. We are a welcoming, stress-free space for great peopl
         
 [Read](https://www.hoopladigital.com/ebook/slippery-creatures-kj-charles/13364521) or [listen](https://www.hoopladigital.com/audiobook/slippery-creatures-kj-charles/13341037) for free on Hoopla.
 
-```{r, out.width='25%', fig.align='center', fig.cap='...'}
-knitr::include_graphics('images/slipperycr.jpg')
-```
-*Synopsis:* Will Darling came back from the Great War with a few scars, a lot of medals, and no idea what to do next. Inheriting his uncle’s chaotic second-hand bookshop is a blessing...until strange visitors start making threats. First a criminal gang, then the War Office, both telling Will to give them the information they want, or else.
 
-Will has no idea what that information is, and nobody to turn to, until Kim Secretan—charming, cultured, oddly attractive—steps in to offer help. As Kim and Will try to find answers and outrun trouble, mutual desire grows along with the danger.
+```{r, out.width='15%', out.extra='style="float:right; padding:10px;"'}
+knitr::include_graphics('images/slipperycr.png')
+```
+*Synopsis:*
+Will Darling came back from the Great War with a few scars, a lot of medals, and no idea what to do next. Inheriting his uncle’s chaotic second-hand bookshop is a blessing...until strange visitors start making threats. First a criminal gang, then the War Office, both telling Will to give them the information they want, or else.
+
+Will has no idea what that information is, and nobody to turn to, until Kim Secretan—charming, cultured, oddly attractive—steps in to offer help. As Kim and Will try to find answers and outrun trouble, mutual desire grows along with the danger.  
 
 And then Will discovers the truth about Kim. His identity, his past, his real intentions. Enraged and betrayed, Will never wants to see him again.
 
 But Will possesses knowledge that could cost thousands of lives. Enemies are closing in on him from all sides—and Kim is the only man who can help.  
 
-*Trigger Notes* - this book does contain explicit sex, but stands on its own if you want to skip the spicy scenes. 
+*Trigger Notes* - this book does contain explicit sex, but stands on its own if you want to skip the spicy scenes.
+
+  
    
 Upcoming Reads
 ===============   
@@ -84,13 +90,57 @@ Equal parts beautiful, thoughtful, and thrilling, Portrait of a Thief is a cultu
 Preferences
 ===============
 
-Fill out our [interest form](https://forms.gle/FqNXHExE8kpbbPxZ7) to add your preferences.
+Fill out our [interest form](https://forms.gle/FqNXHExE8kpbbPxZ7) to add your preferences.  
+  
 
-```{r, echo=FALSE}
-shinyAppDir(
-  system.file("shiny/", package="shiny"),
-  options = list(width = "100%", height = 700)
+```{r shiny, echo=FALSE}
+### UI ###
+ui <- fluidPage(
+  titlePanel(
+    # text title of visualization
+    "Reader Preferences - coming soon"
+  ),
+  # Genre prefs plot
+  fluidRow(
+    column(4,
+           # inputs for manipulating the graph
+           # genre
+           # name
+    ),
+    column(8,
+           #plotOutput("prefplot"). # see server for prefplot def
+    )
+  ),
+  # Triggers plot
+  fluidRow(
+    column(4,
+           # inputs for manipulating the graph
+           # type of trigger
+           # name
+    ),
+    column(8,
+           #plotOutput("trigplot"). # see server for trigplot def
+    )
+  ),
 )
+
+### SERVER ###
+server <- function(input, output) {
+  # create pref output
+  output$prefplot <- renderPlot({
+    # define plot parameters
+  })
+  
+  # create trig output
+  output$trigplot <- renderPlot({
+    # define plot parameters
+  })
+  
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+
 ```
 
 
@@ -112,14 +162,14 @@ Attend to technology in ways that allow you and others to be as present as possi
 
 - Respect confidentiality whenever asked for explicitly; use your best judgment in maintaining confidentiality whenever sensitive matters are discussed. Do not share member contact info. 
   
--Be inclusive. Include each other in conversations. Notice when someone may feel left out and invite them in.
+- Be inclusive. Include each other in conversations. Notice when someone may feel left out and invite them in.
   
--Check your assumptions by being humble and curious, and asking good questions of yourself and others. 
+- Check your assumptions by being humble and curious, and asking good questions of yourself and others. 
   
--Seek to understand; don’t shy away from difficult conversations; engage in respectful disagreement.
+- Seek to understand; don’t shy away from difficult conversations; engage in respectful disagreement.
   
--Use humor with kindness, not to make fun of others. 
+- Use humor with kindness, not to make fun of others. 
   
--Show up and participate, or not, however best serves you, and practice nonjudgment towards how others show up. Finishing a book is not mandatory. Starting a book is not mandatory. Conversation is not mandatory. Regular attendance is not mandatory.
+- Show up and participate, or not, however best serves you, and practice nonjudgment towards how others show up. Finishing a book is not mandatory. Starting a book is not mandatory. Conversation is not mandatory. Regular attendance is not mandatory.
 
 
