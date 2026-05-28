@@ -19,7 +19,7 @@ read_df <- read_df |>
   dplyr::mutate(dplyr::across(Genre:Subgenre, ~stringr::str_to_title(.)))
 
 # fix sloppy nonfiction formats
-nonfics <- c("Arts", "Culture", "History", "Philosophy",
+nonfics <- c("Arts", "Culture", "History", "Philosophy", "Poetry",
              "Psychology", "Science", "Spirituality")
 read_df <- read_df |>
   dplyr::mutate(Genre = dplyr::if_else(Subgenre %in% nonfics,
@@ -43,8 +43,7 @@ read_df <- read_df |>
 read_df <- read_df |>
   dplyr::distinct() |>
   dplyr::filter(Genre != "Etc") |>
-  dplyr::mutate(Genre = dplyr::if_else(nchar(gsub("[^ ]", "", Subgenre)) > 2,
-                                       "Other", Genre))
+  dplyr::filter(stringr::str_detect(Genre, "Want To Read", negate=T))
 
 save(read_df, file = "prefs.RData")
 
