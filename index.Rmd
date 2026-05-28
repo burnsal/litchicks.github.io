@@ -92,61 +92,84 @@ Preferences
 
 Fill out our [interest form](https://forms.gle/FqNXHExE8kpbbPxZ7) to add your preferences.  
   
+    
+  
+```{r static_gen, echo=FALSE, fig.align='center', fig.pos='v'}
+ggplot(read_df, aes(x = Subgenre, fill=Subgenre)) +
+  geom_bar() + theme_bw() +
+  scale_y_continuous(breaks = seq(1:10)) +
+  scale_fill_discrete(palette =
+                        as.vector(Polychrome::green.armytage.colors())) +
+  facet_wrap(~Genre, scales = 'free_x') +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none")
+
+ggplot(read_df, aes(x = Subgenre, fill=Subgenre)) +
+  geom_bar() + theme_bw() +
+  scale_y_continuous(breaks = seq(1:10)) +
+  scale_fill_discrete(palette =
+                        as.vector(Polychrome::green.armytage.colors())) +
+  facet_wrap(~Name, scales = 'free_x') +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "none")
+```
+
+
 
 ```{r shiny, echo=FALSE}
-### UI ###
-ui <- fluidPage(
-  
-  # Genre prefs plot
-  fluidRow(
-    column(4,
-           # inputs for manipulating the graph
-           # genre, member
-           selectInput("pref",
-                       "Visualize preferences by:",
-                       list("Name"="Name", "Genre"="Genre"),
-                       selected = "Genre")
-    ),
-    column(8,
-           plotOutput("prefplot")
-    ),
-  ),
-  # # Triggers plot
-  # fluidRow(
-  #   column(4,
-  #          # inputs for manipulating the graph
-  #          # type of trigger
-  #          # name
-  #   ),
-  #   column(8,
-  #          #plotOutput("trigplot"). # see server for trigplot def
-  #   )
-  # ),
-)
-
-### SERVER ###
-server <- function(input, output) {
-  # create pref output
-  output$prefplot <- renderPlot({
-    # define plot parameters
-    ggplot(read_df, aes(x = Subgenre, fill=Subgenre)) + 
-      geom_bar() + theme_bw() + 
-      scale_y_continuous(breaks = seq(1:10)) +
-      scale_fill_discrete(palette = as.vector(Polychrome::green.armytage.colors())) + 
-      facet_wrap(as.formula(paste("~", input$pref)), scales = 'free_x') +
-      theme(axis.text.x = element_text(angle = 45, hjust = 1),
-            legend.position = "none")
-  })
-  
-  # create trig output
-  output$trigplot <- renderPlot({
-    # define plot parameters
-  })
-  
-}
-
-# Run the application
-shinyApp(ui = ui, server = server)
+# ### UI ###
+# ui <- fluidPage(
+#   
+#   # Genre prefs plot
+#   fluidRow(
+#     column(4,
+#            # inputs for manipulating the graph
+#            # genre, member
+#            selectInput("pref",
+#                        "Visualize preferences by:",
+#                        list("Name"="Name", "Genre"="Genre"),
+#                        selected = "Genre")
+#     ),
+#     column(8,
+#            plotOutput("prefplot")
+#     ),
+#   ),
+#   # Triggers plot
+#   fluidRow(
+#     column(4,
+#            # inputs for manipulating the graph
+#            # type of trigger
+#            # name
+#     ),
+#     column(8,
+#            #plotOutput("trigplot"). # see server for trigplot def
+#     )
+#   ),
+# )
+# 
+# ### SERVER ###
+# server <- function(input, output) {
+#   # create pref output
+#   output$prefplot <- renderPlot({
+#     # define plot parameters
+#     ggplot(read_df, aes(x = Subgenre, fill=Subgenre)) + 
+#       geom_bar() + theme_bw() + 
+#       scale_y_continuous(breaks = seq(1:10)) +
+#       scale_fill_discrete(palette = as.vector(Polychrome::green.armytage.colors())) + 
+#       facet_wrap(as.formula(paste("~", input$pref)), scales = 'free_x') +
+#       theme(axis.text.x = element_text(angle = 45, hjust = 1),
+#             legend.position = "none")
+#   })
+#   
+#   # create trig output
+#   output$trigplot <- renderPlot({
+#     # define plot parameters
+#   })
+#   
+# }
+# 
+# # Run the application
+# shinyApp(ui = ui, server = server)
 
 ```
 
