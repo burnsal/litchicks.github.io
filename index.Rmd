@@ -8,9 +8,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
+# call libraries
 library(flexdashboard)
-# Install thematic and un-comment for themed static plots (i.e., ggplot2)
-# thematic::thematic_rmd()
+
+# load data
+load("prefs.RData")
 
 ```
 
@@ -23,7 +25,7 @@ Welcome to the Lit Chicks. We are a welcoming, stress-free space for great peopl
   
 **Upcoming Meeting Info:**
 
-   + **Book: Slippery Creatures, by K.J. Charles**
+   
    
    + **Date: Thursday, June 2nd, 2026**
   
@@ -33,17 +35,14 @@ Welcome to the Lit Chicks. We are a welcoming, stress-free space for great peopl
    
    + **Please bring a blanket or chair, and a picnic item to share**
    
-Upcoming Reads
-===============   
-
-```{r, out.width='15%', out.extra='style="float:left; padding:10px;"'}
-knitr::include_graphics('images/slipperycr.png')
-```   
-**June 2026 : Slippery Creatures, by K.J. Charles.**
-  
+   + **Book: Slippery Creatures, by K.J. Charles**
+   
+        
 [Read](https://www.hoopladigital.com/ebook/slippery-creatures-kj-charles/13364521) or [listen](https://www.hoopladigital.com/audiobook/slippery-creatures-kj-charles/13341037) for free on Hoopla.
 
-
+```{r, out.width='25%', fig.align='center', fig.cap='...'}
+knitr::include_graphics('images/slipperycr.jpg')
+```
 *Synopsis:* Will Darling came back from the Great War with a few scars, a lot of medals, and no idea what to do next. Inheriting his uncle’s chaotic second-hand bookshop is a blessing...until strange visitors start making threats. First a criminal gang, then the War Office, both telling Will to give them the information they want, or else.
 
 Will has no idea what that information is, and nobody to turn to, until Kim Secretan—charming, cultured, oddly attractive—steps in to offer help. As Kim and Will try to find answers and outrun trouble, mutual desire grows along with the danger.
@@ -52,12 +51,11 @@ And then Will discovers the truth about Kim. His identity, his past, his real in
 
 But Will possesses knowledge that could cost thousands of lives. Enemies are closing in on him from all sides—and Kim is the only man who can help.  
 
-*Trigger Notes* - this book does contain explicit sex, but stands on its own if you want to skip the spicy scenes.
-  
-  
-  
-      
----
+*Trigger Notes* - this book does contain explicit sex, but stands on its own if you want to skip the spicy scenes. 
+   
+Upcoming Reads
+===============   
+
   
   
 **July 2026 : Portrait of a Thief, by Grace Li.** 
@@ -85,14 +83,21 @@ Equal parts beautiful, thoughtful, and thrilling, Portrait of a Thief is a cultu
 
 Preferences
 ===============
-Coming soon - interactive exploration of members' reading preferences.
 
 Fill out our [interest form](https://forms.gle/FqNXHExE8kpbbPxZ7) to add your preferences.
+
+```{r, echo=FALSE}
+shinyAppDir(
+  system.file("shiny/", package="shiny"),
+  options = list(width = "100%", height = 700)
+)
+```
+
 
 Book Selection {data-icon="fa-book"}
 ===============
 [Submit recommendations for our next reader selection poll.](https://forms.gle/SdRHN66RJ3FxpniB7) 
-This submission period ends **May 31, 2026** and the voting period will run **June 1 - June 15, 2026**, covering books discussed August - October 2026.
+This submission period ends **May 7, 2026** and the voting period will run **June 8 - June 22, 2026**, covering books discussed August - October 2026.
 
 
 
